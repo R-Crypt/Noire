@@ -148,7 +148,7 @@ Deno.serve(async (req: Request) => {
         </div>
 
         <p style="font-size: 12px; color: #888; margin: 0;">
-          NOIRÉ Wholesale Showroom · Paris, France<br/>
+          NOIRÉ Wholesale Showroom · New Jersey, USA<br/>
           For urgent enquiries: <a href="mailto:wholesale@noire.co" style="color: #141412;">wholesale@noire.co</a>
         </p>
       </div>

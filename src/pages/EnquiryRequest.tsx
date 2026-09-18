@@ -176,7 +176,7 @@ export function EnquiryRequest() {
                       type="text"
                       value={form.companyName}
                       onChange={(e) => setForm({ ...form, companyName: e.target.value })}
-                      placeholder="e.g. Atelier Marais"
+                      placeholder="e.g. Hudson Atelier"
                       className={`w-full border px-4 py-3 font-body text-[0.8rem] bg-transparent outline-none transition-colors ${
                         errors.companyName ? 'border-[#B91C1C]' : 'border-[#E2DDD8] focus:border-[#141412]'
                       }`}
@@ -222,28 +222,28 @@ export function EnquiryRequest() {
 
                   <div>
                     <label htmlFor="vatNumber" className="label-sm text-[#141412] block mb-2">
-                      VAT / TAX REGISTRATION NUMBER (OPTIONAL)
+                      VAT / TAX ID / EIN (OPTIONAL)
                     </label>
                     <input
                       id="vatNumber"
                       type="text"
                       value={form.vatNumber}
                       onChange={(e) => setForm({ ...form, vatNumber: e.target.value })}
-                      placeholder="e.g. FR12345678901"
+                      placeholder="e.g. 12-3456789 or Tax ID"
                       className="w-full border border-[#E2DDD8] px-4 py-3 font-body text-[0.8rem] bg-transparent outline-none focus:border-[#141412] transition-colors"
                     />
                   </div>
 
                   <div>
                     <label htmlFor="city" className="label-sm text-[#141412] block mb-2">
-                      CITY *
+                      CITY / STATE *
                     </label>
                     <input
                       id="city"
                       type="text"
                       value={form.city}
                       onChange={(e) => setForm({ ...form, city: e.target.value })}
-                      placeholder="e.g. Paris"
+                      placeholder="e.g. Jersey City, New Jersey"
                       className={`w-full border px-4 py-3 font-body text-[0.8rem] bg-transparent outline-none transition-colors ${
                         errors.city ? 'border-[#B91C1C]' : 'border-[#E2DDD8] focus:border-[#141412]'
                       }`}
@@ -262,7 +262,7 @@ export function EnquiryRequest() {
                       type="text"
                       value={form.country}
                       onChange={(e) => setForm({ ...form, country: e.target.value })}
-                      placeholder="e.g. France"
+                      placeholder="e.g. United States"
                       className={`w-full border px-4 py-3 font-body text-[0.8rem] bg-transparent outline-none transition-colors ${
                         errors.country ? 'border-[#B91C1C]' : 'border-[#E2DDD8] focus:border-[#141412]'
                       }`}
@@ -293,7 +293,7 @@ export function EnquiryRequest() {
                       type="text"
                       value={form.contactName}
                       onChange={(e) => setForm({ ...form, contactName: e.target.value })}
-                      placeholder="e.g. Hélène Laurent"
+                      placeholder="e.g. Sarah Jenkins"
                       className={`w-full border px-4 py-3 font-body text-[0.8rem] bg-transparent outline-none transition-colors ${
                         errors.contactName ? 'border-[#B91C1C]' : 'border-[#E2DDD8] focus:border-[#141412]'
                       }`}
@@ -345,7 +345,7 @@ export function EnquiryRequest() {
                       type="tel"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      placeholder="+33 6 12 34 56 78"
+                      placeholder="+1 (201) 555-0192"
                       className={`w-full border px-4 py-3 font-body text-[0.8rem] bg-transparent outline-none transition-colors ${
                         errors.phone ? 'border-[#B91C1C]' : 'border-[#E2DDD8] focus:border-[#141412]'
                       }`}
@@ -488,7 +488,7 @@ export function EnquiryRequest() {
                 <span className="label-sm font-medium">24–48 HOUR RESPONSE</span>
               </div>
               <p className="font-body text-[0.75rem] text-[#7A7672] leading-relaxed">
-                Our Paris wholesale showroom will verify line allocations and reply directly with complete line sheets, FOB / EXW pricing, and fabric sample dispatch options.
+                Our New Jersey wholesale showroom will verify line allocations and reply directly with complete line sheets, FOB / EXW pricing, and fabric sample dispatch options.
               </p>
             </div>
           </div>
