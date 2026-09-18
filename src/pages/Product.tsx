@@ -150,29 +150,14 @@ export function Product() {
                 {product.description}
               </p>
 
-              {/* Colors — informational only */}
-              <div className="mb-6">
-                <p className="label-sm text-[#A8A4A0] mb-3">AVAILABLE COLOURS</p>
-                <div className="flex flex-wrap gap-2">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`font-body text-[0.65rem] tracking-wider px-3 py-1.5 border transition-all duration-200 ${
-                        selectedColor === color
-                          ? 'border-[#141412] text-[#141412] bg-transparent'
-                          : 'border-[#E2DDD8] text-[#A8A4A0] hover:border-[#141412] hover:text-[#141412]'
-                      }`}
-                      aria-pressed={selectedColor === color}
-                      aria-label={`Select colour ${color}`}
-                    >
-                      {color}
-                    </button>
-                  ))}
+              {/* Colour — single colourway */}
+              <div className="mb-6 pb-6 border-b border-[#E2DDD8]">
+                <div className="flex items-center justify-between">
+                  <span className="label-sm text-[#A8A4A0]">COLOURWAY</span>
+                  <span className="font-body text-[0.78rem] font-medium text-[#141412] tracking-wide">
+                    {product.colors[0]}
+                  </span>
                 </div>
-                <p className="font-body text-[0.68rem] text-[#A8A4A0] mt-2 tracking-wide">
-                  Colour selected for enquiry: <span className="text-[#141412]">{selectedColor}</span>
-                </p>
               </div>
 
               {/* Quantity Breakdown */}
