@@ -24,6 +24,21 @@ export function Enquiry() {
     }
   };
 
+  const handleQuantitySet = (productId: string, selectedColor: string, size: string, newQty: number) => {
+    const item = state.items.find((i) => i.product.id === productId && i.selectedColor === selectedColor);
+    if (!item) return;
+
+    const qty = Math.max(0, Math.min(9999, newQty));
+    const updatedQuantities = { ...item.sizeQuantities, [size]: qty };
+    const newTotal = Object.values(updatedQuantities).reduce((a, b) => a + b, 0);
+
+    if (newTotal === 0) {
+      removeItem(productId, selectedColor);
+    } else {
+      updateItem(productId, selectedColor, updatedQuantities, newTotal);
+    }
+  };
+
   const allMoqMet = state.items.every((item) => item.totalQuantity >= item.product.minimumOrderQuantity);
 
   return (
@@ -168,18 +183,30 @@ export function Enquiry() {
                                     className="border border-[#E2DDD8] p-2 text-center bg-[#F8F5F0]/50"
                                   >
                                     <div className="label-sm text-[#7A7672] mb-1">{size}</div>
-                                    <div className="flex items-center justify-between gap-1 bg-white border border-[#E2DDD8] px-1 py-0.5">
+                                    <div className="flex items-center justify-between gap-0 bg-white border border-[#E2DDD8] px-0.5 py-0.5">
                                       <button
+                                        type="button"
                                         onClick={() => handleQuantityChange(item.product.id, item.selectedColor, size, -1)}
                                         className="p-1 text-[#7A7672] hover:text-[#141412] transition-colors"
                                         aria-label={`Decrease ${size}`}
                                       >
                                         <Minus size={11} />
                                       </button>
-                                      <span className="font-body text-[0.78rem] font-medium text-[#141412]">
-                                        {qty}
-                                      </span>
+                                      <input
+                                        type="text"
+                                        inputMode="numeric"
+                                        pattern="[0-9]*"
+                                        value={qty}
+                                        onFocus={(e) => e.target.select()}
+                                        onChange={(e) => {
+                                          const val = e.target.value.replace(/[^0-9]/g, '');
+                                          handleQuantitySet(item.product.id, item.selectedColor, size, val === '' ? 0 : parseInt(val, 10));
+                                        }}
+                                        className="w-10 text-center font-body text-[0.78rem] font-medium text-[#141412] bg-transparent outline-none focus:bg-[#F8F5F0]"
+                                        aria-label={`Quantity for ${size}`}
+                                      />
                                       <button
+                                        type="button"
                                         onClick={() => handleQuantityChange(item.product.id, item.selectedColor, size, 1)}
                                         className="p-1 text-[#7A7672] hover:text-[#141412] transition-colors"
                                         aria-label={`Increase ${size}`}

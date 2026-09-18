@@ -17,6 +17,12 @@ export function QuantityBreakdown({ sizes, quantities, onChange, moq, totalQuant
     onChange(size, next);
   };
 
+  const handleInputChange = (size: string, valStr: string) => {
+    const cleaned = valStr.replace(/[^0-9]/g, '');
+    const num = cleaned === '' ? 0 : parseInt(cleaned, 10);
+    onChange(size, Math.min(9999, Math.max(0, num)));
+  };
+
   return (
     <div>
       {/* MOQ header */}
@@ -40,25 +46,32 @@ export function QuantityBreakdown({ sizes, quantities, onChange, moq, totalQuant
             >
               <span className="font-body text-[0.78rem] text-[#141412] tracking-wide w-16">{size}</span>
 
-              <div className="flex items-center gap-0">
+              <div className="flex items-center gap-0 border border-[#E2DDD8] bg-white">
                 <button
+                  type="button"
                   onClick={() => handleChange(size, -1)}
                   disabled={qty === 0}
-                  className="w-10 h-10 flex items-center justify-center text-[#141412] disabled:text-[#C8C2BC] hover:bg-[#EEEAE4] transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-[#141412] disabled:text-[#C8C2BC] hover:bg-[#EEEAE4] transition-colors"
                   aria-label={`Decrease ${size}`}
                 >
                   <Minus size={12} strokeWidth={1.5} />
                 </button>
-                <span
-                  className="w-10 text-center font-body text-[0.82rem] text-[#141412] font-medium"
-                  aria-live="polite"
-                  aria-label={`${size}: ${qty} units`}
-                >
-                  {qty}
-                </span>
+
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={qty}
+                  onFocus={(e) => e.target.select()}
+                  onChange={(e) => handleInputChange(size, e.target.value)}
+                  className="w-12 h-9 text-center font-body text-[0.82rem] text-[#141412] font-medium bg-transparent border-x border-[#E2DDD8] outline-none focus:bg-[#F8F5F0] transition-colors"
+                  aria-label={`Quantity for size ${size}`}
+                />
+
                 <button
+                  type="button"
                   onClick={() => handleChange(size, 1)}
-                  className="w-10 h-10 flex items-center justify-center text-[#141412] hover:bg-[#EEEAE4] transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-[#141412] hover:bg-[#EEEAE4] transition-colors"
                   aria-label={`Increase ${size}`}
                 >
                   <Plus size={12} strokeWidth={1.5} />
